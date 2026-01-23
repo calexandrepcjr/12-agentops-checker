@@ -1,6 +1,17 @@
 # 12-Factor AgentOps Checker
 
-A CLI tool and MCP Server to assess Agentic Systems against the 12-Factor AgentOps methodology.
+A universal CLI tool and MCP Server designed to assess, scaffold, and validate Agentic Systems against the **[12-Factor AgentOps](https://www.12factoragentops.com/)** methodology.
+
+> **Inspiration**: This project is directly inspired by the 12-Factor AgentOps methodology, a set of best practices for building reliable, scalable, and maintainable AI agent systems.
+
+## Purpose
+
+As AI agents move from prototypes to production, they require the same rigorous operational discipline as traditional software. This tool provides an automated way to:
+
+1.  **Assess** compliance with operational best practices.
+2.  **Scaffold** missing infrastructure (configs, docs, structure).
+3.  **Validate** agent systems in CI/CD pipelines.
+4.  **Expose** these capabilities directly to your IDE or Claude Desktop via MCP.
 
 ## Features
 
@@ -16,69 +27,109 @@ A CLI tool and MCP Server to assess Agentic Systems against the 12-Factor AgentO
 npm install -g @anthropic-tools/12-agentops-checker
 ```
 
-Or run directly:
+Or run directly with `npx`:
 
 ```bash
 npx @anthropic-tools/12-agentops-checker assess .
 ```
 
-## Usage
+## Quick Start (CLI)
 
-### CLI
+Assess your current directory:
 
 ```bash
-# Analyze codebase structure
-agentops-check analyze ./my-agent-repo
-
-# Assess against 12 factors
-agentops-check assess ./my-agent-repo
-
-# Generate scaffold files
-agentops-check scaffold ./my-agent-repo --apply
-
-# Lint (for CI)
-agentops-check lint ./my-agent-repo
+agentops-check assess .
 ```
 
-### MCP Server
+Generate missing configuration and structure:
 
-Configure your MCP client to use the server:
+```bash
+# Dry run to see what would be created
+agentops-check scaffold .
+
+# Apply changes
+agentops-check scaffold . --apply
+```
+
+## MCP Configuration (Claude Desktop)
+
+To use these tools directly within Claude Desktop, update your configuration file:
+
+**MacOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+Add the following configuration:
 
 ```json
 {
   "mcpServers": {
     "agentops": {
       "command": "npx",
-      "args": ["-y", "@anthropic-tools/12-agentops-checker", "mcp"] 
-      // Note: currently the package exports cli by default. 
-      // If installing globally, use `agentops-check-mcp` if exposed, or run the server script.
-      // For local dev:
-      "command": "node",
-      "args": ["/path/to/repo/dist/mcp/index.js"]
+      "args": [
+        "-y",
+        "@anthropic-tools/12-agentops-checker",
+        "mcp"
+      ]
     }
   }
 }
 ```
 
-## 12 Factors
+*Note: Requires node >= 18 installed.*
 
-1. **Automated Tracking**: Git usage, structured commits.
-2. **Context Loading**: Explicit context limits configuration.
-3. **Focused Agents**: Agents have single responsibilities.
-4. **Continuous Validation**: Tests and CI/CD gates.
-5. **Measure Everything**: Telemetry and detailed logging.
-6. **Resume Work**: State persistence.
-7. **Smart Routing**: Router pattern for multi-agent systems.
-8. **Human Validation**: Approval safeguards.
-9. **Mine Patterns**: Extract reusable patterns.
-10. **Small Iterations**: Feature flags and versioning.
-11. **Fail-Safe Checks**: Circuit breakers.
-12. **Package Patterns**: Code is packageable.
+## The 12 Factors
 
-## Development
+We validate against these core principles:
+
+1.  **Automated Tracking**: Is everything (code, prompts, configs) tracked in git?
+2.  **Context Loading**: Is context usage measured and explicit limits defined?
+3.  **Focused Agents**: Do agents have single, well-defined responsibilities?
+4.  **Continuous Validation**: Are there automated tests and CI gates?
+5.  **Measure Everything**: Is telemetry and logging enabled?
+6.  **Resume Work**: Can agents resume tasks after interruption (persistence)?
+7.  **Smart Routing**: Is there a router for delegating tasks?
+8.  **Human Validation**: Are there approval steps for critical actions?
+9.  **Mine Patterns**: Are successful patterns extracted and reused?
+10. **Small Iterations**: Are feature flags or versioning strategies in place?
+11. **Fail-Safe Checks**: Are there circuit breakers for LLM calls?
+12. **Package Patterns**: Is the system packageable for reuse?
+
+## Development / Contributing
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/calexandrepcjr/12-agentops-checker.git
+    cd 12-agentops-checker
+    ```
+
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+
+3.  Build and link locally:
+    ```bash
+    npm run build
+    npm link
+    ```
+
+4.  Run tests:
+    ```bash
+    npm test
+    ```
+
+## CLI Reference
 
 ```bash
-npm install
-npm run build
-npm run test
+# Analyze codebase structure
+agentops-check analyze <path>
+
+# Assess compliance (returns grade A-F)
+agentops-check assess <path>
+
+# Scaffold AgentOps structure
+agentops-check scaffold <path> [--apply]
+
+# Lint for CI (exit code 1 on failure)
+agentops-check lint <path>
 ```
