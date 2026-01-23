@@ -1,5 +1,5 @@
 import { BaseDetector } from './base-detector.js';
-import { DetectedAgent, DETECTION_PATTERNS } from '../types.js'; // Correction: DETECTION_PATTERNS is in constants
+import { DetectedAgent } from '../types.js';
 import { DETECTION_PATTERNS as PATTERNS } from '../constants.js';
 
 export class AgentDetector extends BaseDetector<DetectedAgent[]> {

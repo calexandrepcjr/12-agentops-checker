@@ -1,5 +1,5 @@
 import { BaseDetector } from './base-detector.js';
-import { DetectedConfig, DETECTION_PATTERNS } from '../types.js'; // Correction: constants
+import { DetectedConfig } from '../types.js';
 import { DETECTION_PATTERNS as PATTERNS } from '../constants.js';
 
 export class ConfigDetector extends BaseDetector<DetectedConfig[]> {

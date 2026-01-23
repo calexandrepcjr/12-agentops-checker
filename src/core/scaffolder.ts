@@ -1,6 +1,8 @@
 import { ScaffoldResult, ScaffoldFile } from '../types.js';
-// We will need generators in the next batch to fully implement this. 
-// For now, we define the structure and will wire up generators in Batch 6.
+import { generateAll } from '../generators/index.js';
+import { Analyzer } from './analyzer.js';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 export interface ScaffoldOptions {
     dryRun?: boolean;
@@ -9,25 +11,34 @@ export interface ScaffoldOptions {
 
 export class Scaffolder {
     async scaffold(rootPath: string, options: ScaffoldOptions): Promise<ScaffoldResult> {
-        // Placeholder - will integrate generators in Batch 6
-        // This allows us to commit Batch 5 as requested, then update or finish wiring in Batch 6 or 9.
-        // However, the instructions for Batch 5 say: "Generates missing structure based on assessment".
-        // Since Generators are Batch 6, I will implement the scaffolding logic in Batch 6 or create a stub here
-        // that returns empty result, and then update it in Batch 6.
+        // 1. Generate files
+        const files = generateAll(await new Analyzer().analyze(rootPath), options);
 
-        // Actually, looking at the plan, Batch 6 is "Generators". 
-        // Is Scaffolder supposed to use Generators? Yes.
-        // So Scaffolder depends on Generators. 
-        // I will implement the class skeleton now and populate it in Batch 6 or 9? 
-        // No, I should probably implement it now but with empty generators list or minimal logic.
-        // Creating a placeholder "generateAll" function call stub.
+        // 2. Write files if apply is true
+        if (options.apply) {
+            for (const file of files) {
+                const fullPath = path.join(rootPath, file.path);
+                await fs.mkdir(path.dirname(fullPath), { recursive: true });
+                if (file.overwrite || !(await this.fileExists(fullPath))) {
+                    await fs.writeFile(fullPath, file.content);
+                }
+            }
+        }
 
-        const files: ScaffoldFile[] = [];
-        const summary = 'Scaffolding not yet implemented (waiting for Batch 6 Generators)';
+        const summary = `Generated ${files.length} scaffold files.`;
 
         return {
             files,
             summary
         };
+    }
+
+    private async fileExists(path: string): Promise<boolean> {
+        try {
+            await fs.access(path);
+            return true;
+        } catch {
+            return false;
+        }
     }
 }
