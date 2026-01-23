@@ -1,6 +1,7 @@
 import { Analyzer } from './analyzer.js';
 import { assessAllFactors } from '../factors/index.js';
-import { AssessmentResult, SCORE_THRESHOLDS } from '../types.js';
+import { AssessmentResult } from '../types.js';
+import { SCORE_THRESHOLDS } from '../constants.js';
 
 export class Assessor {
     private analyzer: Analyzer;
