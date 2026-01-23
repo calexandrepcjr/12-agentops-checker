@@ -69,3 +69,12 @@ export enum ReportFormat {
     Markdown = 'markdown',
     Terminal = 'terminal',
 }
+export interface AgentOpsConfig {
+    lint?: {
+        threshold?: number;
+        ignore?: string[];
+    };
+    context?: {
+        maxTokens?: number;
+    };
+}

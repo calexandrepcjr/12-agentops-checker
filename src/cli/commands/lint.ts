@@ -14,10 +14,17 @@ export async function lintCommand(targetPath: string, _options: LintOptions): Pr
     try {
         // Lint is basically assess but only outputting errors/issues and exit code 1 if failed
         const assessor = new Assessor();
+        const config = await CLIUtils.loadConfig(rootPath);
         const result = await assessor.assess(rootPath);
         stopSpinner();
 
-        const failures = result.scores.filter(s => s.score < 50); // arbitrary threshold for "lint fail"
+        const threshold = config.lint?.threshold || 50;
+        const ignoreList = config.lint?.ignore || [];
+
+        const failures = result.scores.filter(s => {
+            if (ignoreList.includes(s.factor)) return false;
+            return s.score < threshold;
+        });
 
         if (failures.length > 0) {
             console.log(chalk.red('\nLint Failed:'));

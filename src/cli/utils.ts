@@ -1,5 +1,8 @@
 import chalk from 'chalk';
 import readline from 'node:readline';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { AgentOpsConfig } from '../types';
 
 export class CLIUtils {
     static async prompt(question: string): Promise<string> {
@@ -35,5 +38,42 @@ export class CLIUtils {
     static error(message: string): void {
         console.error(chalk.red(`\n✖ ${message}`));
         process.exit(1);
+    }
+
+    static async loadConfig(rootPath: string): Promise<AgentOpsConfig> {
+        try {
+            // Check for agentops.config.json or .agentops/config.json
+            const configPaths = [
+                path.join(rootPath, 'agentops.config.json'),
+                path.join(rootPath, '.agentops/config.json')
+            ];
+
+            for (const p of configPaths) {
+                try {
+                    await fs.access(p);
+                    const content = await fs.readFile(p, 'utf-8');
+                    return JSON.parse(content);
+                } catch {
+                    continue;
+                }
+            }
+
+            // Check package.json
+            try {
+                const pkgPath = path.join(rootPath, 'package.json');
+                await fs.access(pkgPath);
+                const content = await fs.readFile(pkgPath, 'utf-8');
+                const pkg = JSON.parse(content);
+                if (pkg.agentops) {
+                    return pkg.agentops;
+                }
+            } catch {
+                // ignore
+            }
+
+            return {};
+        } catch (error) {
+            return {};
+        }
     }
 }
