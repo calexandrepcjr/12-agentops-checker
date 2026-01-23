@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import { analyzeCommand } from './commands/analyze.js';
-import { assessCommand } from './commands/assess.js';
-import { scaffoldCommand } from './commands/scaffold.js';
-import { lintCommand } from './commands/lint.js';
+import { analyzeCommand } from './commands/analyze';
+import { assessCommand } from './commands/assess';
+import { scaffoldCommand } from './commands/scaffold';
+import { lintCommand } from './commands/lint';
 
 const program = new Command();
 

@@ -1,5 +1,5 @@
-import { Analyzer } from '../../core/analyzer.js';
-import { CLIUtils } from '../utils.js';
+import { Analyzer } from '../../core/analyzer';
+import { CLIUtils } from '../utils';
 import path from 'node:path';
 import chalk from 'chalk';
 

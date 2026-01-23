@@ -1,5 +1,5 @@
-import { BaseDetector } from './base-detector.js';
-import { DetectedPattern } from '../types.js';
+import { BaseDetector } from './base-detector';
+import { DetectedPattern } from '../types';
 
 export class PatternDetector extends BaseDetector<DetectedPattern[]> {
     async detect(rootPath: string): Promise<DetectedPattern[]> {

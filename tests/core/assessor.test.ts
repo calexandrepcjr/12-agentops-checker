@@ -6,8 +6,12 @@ describe('Assessor', () => {
 
     it('should assess partial repo', async () => {
         const result = await assessor.assess(PARTIAL_REPO);
+        const f02 = result.scores.find(s => s.factor === 'f02');
+        const f03 = result.scores.find(s => s.factor === 'f03');
+
         expect(result.overallScore).toBeGreaterThan(0);
-        expect(result.grade).not.toBe('F'); // Should have some points
+        expect(f02?.score).toBe(80);
+        expect(f03?.score).toBe(50);
     });
 
     it('should fail empty repo', async () => {

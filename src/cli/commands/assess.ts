@@ -1,7 +1,7 @@
-import { Assessor } from '../../core/assessor.js';
-import { Reporter } from '../../core/reporter.js';
-import { ReportFormat } from '../../types.js';
-import { CLIUtils } from '../utils.js';
+import { Assessor } from '../../core/assessor';
+import { Reporter } from '../../core/reporter';
+import { ReportFormat } from '../../types';
+import { CLIUtils } from '../utils';
 import path from 'node:path';
 
 export interface AssessOptions {

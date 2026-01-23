@@ -1,4 +1,4 @@
-import { AssessmentResult, ReportFormat } from '../types.js';
+import { AssessmentResult, ReportFormat } from '../types';
 import chalk from 'chalk';
 
 export class Reporter {

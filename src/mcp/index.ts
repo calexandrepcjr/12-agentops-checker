@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { AgentOpsServer } from './server.js';
+import { AgentOpsServer } from './server';
 
 const server = new AgentOpsServer();
 server.run().catch((error) => {

@@ -1,4 +1,4 @@
-import { ToolSchema } from '@modelcontextprotocol/sdk/types.js';
+import { ToolSchema } from '@modelcontextprotocol/sdk/types';
 
 export const AGENTOPS_ANALYZE_TOOL = {
     name: 'agentops_analyze',

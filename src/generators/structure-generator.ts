@@ -1,5 +1,5 @@
-import { BaseGenerator } from './base-generator.js';
-import { AnalysisResult, ScaffoldFile } from '../types.js';
+import { BaseGenerator } from './base-generator';
+import { AnalysisResult, ScaffoldFile } from '../types';
 
 export class StructureGenerator extends BaseGenerator {
     generate(_analysis: AnalysisResult): ScaffoldFile[] {

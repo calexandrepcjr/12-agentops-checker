@@ -1,5 +1,5 @@
-import { BaseDetector } from './base-detector.js';
-import { AnalysisResult } from '../types.js';
+import { BaseDetector } from './base-detector';
+import { AnalysisResult } from '../types';
 
 interface LanguageIndicator {
     language: AnalysisResult['language'];

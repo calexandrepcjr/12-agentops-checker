@@ -1,5 +1,5 @@
-import { BaseFactor } from '../base-factor.js';
-import { AnalysisResult, Factor, FactorScore } from '../../types.js';
+import { BaseFactor } from './base-factor';
+import { AnalysisResult, Factor, FactorScore } from '../types';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -22,7 +22,7 @@ export class AutomatedTrackingFactor extends BaseFactor {
 
         // Check for structured commits (simple check for convention)
         // In a real scenario, we'd check git log, but for now we look for contributing guidelines or commitlint
-        if (analysis.patterns.some(p => p.files.some(f => f.includes('CONTRIBUTING') || f.includes('commitlint')))) {
+        if (analysis.patterns.some((p: any) => p.files.some((f: string) => f.includes('CONTRIBUTING') || f.includes('commitlint')))) {
             score += 25;
             findings.push('Commit conventions likely enforced (CONTRIBUTING/commitlint found)');
         } else {
@@ -30,7 +30,7 @@ export class AutomatedTrackingFactor extends BaseFactor {
         }
 
         // Check for CI for operations tracking
-        const hasCI = analysis.patterns.some(p => p.name === 'CI/CD Workflows');
+        const hasCI = analysis.patterns.some((p: any) => p.name === 'CI/CD Workflows');
         if (hasCI) {
             score += 25;
             findings.push('CI/CD workflows detected (automated operations tracking)');

@@ -1,4 +1,4 @@
-import { AnalysisResult, Factor, FactorScore } from '../types.js';
+import { AnalysisResult, Factor, FactorScore } from '../types';
 
 export abstract class BaseFactor {
     abstract factorId: Factor;

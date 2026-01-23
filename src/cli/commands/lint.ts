@@ -1,5 +1,5 @@
-import { Assessor } from '../../core/assessor.js';
-import { CLIUtils } from '../utils.js';
+import { Assessor } from '../../core/assessor';
+import { CLIUtils } from '../utils';
 import path from 'node:path';
 import chalk from 'chalk';
 

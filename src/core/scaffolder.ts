@@ -1,6 +1,6 @@
-import { ScaffoldResult, ScaffoldFile } from '../types.js';
-import { generateAll } from '../generators/index.js';
-import { Analyzer } from './analyzer.js';
+import { ScaffoldResult, ScaffoldFile } from '../types';
+import { generateAll } from '../generators/index';
+import { Analyzer } from './analyzer';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 

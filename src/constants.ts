@@ -1,4 +1,4 @@
-import { Factor } from './types.js';
+import { Factor } from './types';
 
 export const FACTORS = [
     {
@@ -83,7 +83,7 @@ export const FACTOR_CATEGORIES = {
 
 export const DETECTION_PATTERNS = {
     agent: ['**/agents/**/*.ts', '**/agents/**/*.py', '**/skills/**/*.ts', '**/skills/**/*.py'],
-    config: ['.agentops.*', 'agentops.config.*'],
+    config: ['.agentops.*', 'agentops.config.*', '.agentops/**/*.json', '.agentops/**/*.yaml', '.agentops/**/*.yml'],
     ci: ['.github/workflows/*.yml', '.gitlab-ci.yml'],
     docker: ['Dockerfile', 'docker-compose.yml'],
 };

@@ -1,5 +1,5 @@
-import { BaseFactor } from '../base-factor.js';
-import { AnalysisResult, Factor, FactorScore } from '../../types.js';
+import { BaseFactor } from './base-factor';
+import { AnalysisResult, Factor, FactorScore } from '../types';
 
 export class PackagePatternsFactor extends BaseFactor {
     factorId = Factor.PackagePatterns;

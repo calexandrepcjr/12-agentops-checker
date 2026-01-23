@@ -1,8 +1,8 @@
-import { LanguageDetector } from './language-detector.js';
-import { AgentDetector } from './agent-detector.js';
-import { ConfigDetector } from './config-detector.js';
-import { PatternDetector } from './pattern-detector.js';
-import { AnalysisResult } from '../types.js';
+import { LanguageDetector } from './language-detector';
+import { AgentDetector } from './agent-detector';
+import { ConfigDetector } from './config-detector';
+import { PatternDetector } from './pattern-detector';
+import { AnalysisResult } from '../types';
 
 export async function runAllDetectors(rootPath: string): Promise<AnalysisResult> {
     const langDetector = new LanguageDetector();
@@ -31,8 +31,8 @@ export async function runAllDetectors(rootPath: string): Promise<AnalysisResult>
     };
 }
 
-export { BaseDetector } from './base-detector.js';
-export { LanguageDetector } from './language-detector.js';
-export { AgentDetector } from './agent-detector.js';
-export { ConfigDetector } from './config-detector.js';
-export { PatternDetector } from './pattern-detector.js';
+export { BaseDetector } from './base-detector';
+export { LanguageDetector } from './language-detector';
+export { AgentDetector } from './agent-detector';
+export { ConfigDetector } from './config-detector';
+export { PatternDetector } from './pattern-detector';

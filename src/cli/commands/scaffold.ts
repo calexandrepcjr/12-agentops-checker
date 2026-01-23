@@ -1,5 +1,5 @@
-import { Scaffolder, ScaffoldOptions } from '../../core/scaffolder.js';
-import { CLIUtils } from '../utils.js';
+import { Scaffolder, ScaffoldOptions } from '../../core/scaffolder';
+import { CLIUtils } from '../utils';
 import path from 'node:path';
 import chalk from 'chalk';
 

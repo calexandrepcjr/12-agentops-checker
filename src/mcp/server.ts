@@ -1,20 +1,20 @@
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { Server } from '@modelcontextprotocol/sdk/server/index';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio';
 import {
     CallToolRequestSchema,
     ListToolsRequestSchema,
-} from '@modelcontextprotocol/sdk/types.js';
+} from '@modelcontextprotocol/sdk/types';
 import {
     AGENTOPS_ANALYZE_TOOL,
     AGENTOPS_ASSESS_TOOL,
     AGENTOPS_LINT_TOOL,
     AGENTOPS_SCAFFOLD_TOOL,
-} from './tools.js';
-import { Analyzer } from '../core/analyzer.js';
-import { Assessor } from '../core/assessor.js';
-import { Scaffolder } from '../core/scaffolder.js';
-import { Reporter } from '../core/reporter.js';
-import { ReportFormat } from '../types.js';
+} from './tools';
+import { Analyzer } from '../core/analyzer';
+import { Assessor } from '../core/assessor';
+import { Scaffolder } from '../core/scaffolder';
+import { Reporter } from '../core/reporter';
+import { ReportFormat } from '../types';
 
 export class AgentOpsServer {
     private server: Server;

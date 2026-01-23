@@ -1,6 +1,6 @@
-import { BaseDetector } from './base-detector.js';
-import { DetectedConfig } from '../types.js';
-import { DETECTION_PATTERNS as PATTERNS } from '../constants.js';
+import { BaseDetector } from './base-detector';
+import { DetectedConfig } from '../types';
+import { DETECTION_PATTERNS as PATTERNS } from '../constants';
 
 export class ConfigDetector extends BaseDetector<DetectedConfig[]> {
     async detect(rootPath: string): Promise<DetectedConfig[]> {

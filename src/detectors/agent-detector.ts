@@ -1,6 +1,6 @@
-import { BaseDetector } from './base-detector.js';
-import { DetectedAgent } from '../types.js';
-import { DETECTION_PATTERNS as PATTERNS } from '../constants.js';
+import { BaseDetector } from './base-detector';
+import { DetectedAgent } from '../types';
+import { DETECTION_PATTERNS as PATTERNS } from '../constants';
 
 export class AgentDetector extends BaseDetector<DetectedAgent[]> {
     async detect(rootPath: string): Promise<DetectedAgent[]> {

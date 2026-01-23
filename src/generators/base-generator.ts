@@ -1,4 +1,5 @@
-import { AnalysisResult, ScaffoldFile, ScaffoldOptions } from '../types.js';
+import { AnalysisResult, ScaffoldFile } from '../types';
+import { ScaffoldOptions } from '../core/scaffolder';
 
 export abstract class BaseGenerator {
     protected options: ScaffoldOptions;

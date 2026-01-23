@@ -1,8 +1,9 @@
-import { AnalysisResult, ScaffoldFile, ScaffoldOptions } from '../types.js';
-import { ClaudeMdGenerator } from './claude-md-generator.js';
-import { ConfigGenerator } from './config-generator.js';
-import { AgentGenerator } from './agent-generator.js';
-import { StructureGenerator } from './structure-generator.js';
+import { AnalysisResult, ScaffoldFile } from '../types';
+import { ScaffoldOptions } from '../core/scaffolder';
+import { ClaudeMdGenerator } from './claude-md-generator';
+import { ConfigGenerator } from './config-generator';
+import { AgentGenerator } from './agent-generator';
+import { StructureGenerator } from './structure-generator';
 
 export function generateAll(analysis: AnalysisResult, options: ScaffoldOptions): ScaffoldFile[] {
     const generators = [
