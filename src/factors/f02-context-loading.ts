@@ -22,12 +22,7 @@ export class ContextLoadingFactor extends BaseFactor {
         // Check for chunking logic in code
         // This is hard to detect statically with high confidence without deeper analysis, 
         // but we can look for "chunk" or "split" keywords in potential agent files
-        const hasChunkingLogic = analysis.agents.some(agent => {
-            // This would require reading the agent file content which we don't store in AnalysisResult fully yet
-            // For now, we assume if we found agents, maybe they handle it.
-            // Let's rely on finding "text_splitter" or "RecursiveCharacterTextSplitter" in deps or code
-            return false; // difficult without content
-        });
+        const hasChunkingLogic = false;
 
         if (hasChunkingLogic) {
             score += 20;
