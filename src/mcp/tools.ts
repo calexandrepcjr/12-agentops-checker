@@ -1,5 +1,3 @@
-import { ToolSchema } from '@modelcontextprotocol/sdk/types.js';
-
 export const AGENTOPS_ANALYZE_TOOL = {
     name: 'agentops_analyze',
     description: 'Analyze codebase structure to detect agents, configs, languages, and patterns',

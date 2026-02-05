@@ -1,5 +1,7 @@
 import { BaseFactor } from './base-factor';
 import { AnalysisResult, Factor, FactorScore } from '../types';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 export class PackagePatternsFactor extends BaseFactor {
     factorId = Factor.PackagePatterns;
@@ -28,7 +30,23 @@ export class PackagePatternsFactor extends BaseFactor {
     }
 
     private async checkPackagable(rootPath: string): Promise<boolean> {
-        // rudimentary check
-        return true; // Assume true if package.json exists usually
+        const packageIndicators = [
+            'package.json',
+            'pyproject.toml',
+            'setup.py',
+            'setup.cfg',
+            'Cargo.toml',
+        ];
+
+        for (const file of packageIndicators) {
+            try {
+                await fs.access(path.join(rootPath, file));
+                return true;
+            } catch {
+                // continue checking other indicators
+            }
+        }
+
+        return false;
     }
 }

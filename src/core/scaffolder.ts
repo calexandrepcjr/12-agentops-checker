@@ -1,4 +1,4 @@
-import { ScaffoldResult, ScaffoldFile } from '../types';
+import { ScaffoldResult } from '../types';
 import { generateAll } from '../generators/index';
 import { Analyzer } from './analyzer';
 import fs from 'node:fs/promises';
