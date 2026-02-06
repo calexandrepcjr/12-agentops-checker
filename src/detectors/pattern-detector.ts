@@ -23,6 +23,26 @@ export class PatternDetector extends BaseDetector<DetectedPattern[]> {
             });
         }
 
+        // Check for automated tests
+        const testFiles = await this.globFiles('**/*.{test,spec}.{ts,tsx,js,jsx,py}', rootPath);
+        if (testFiles.length > 0) {
+            patterns.push({
+                name: 'Automated Tests',
+                description: 'Found unit/integration test files',
+                files: testFiles
+            });
+        }
+
+        // Check for agentic harness/tooling hints
+        const harnessFiles = await this.globFiles('**/*{mcp,tool,harness,router,workflow}*.{ts,js,py,json,yml,yaml}', rootPath);
+        if (harnessFiles.length > 0) {
+            patterns.push({
+                name: 'Agentic Harness Tooling',
+                description: 'Found files suggesting tool-augmented agent workflows',
+                files: harnessFiles
+            });
+        }
+
         return patterns;
     }
 }

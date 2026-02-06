@@ -10,13 +10,18 @@ export class ContextLoadingFactor extends BaseFactor {
         let score = 0;
 
         // Check for context management configs usually in .agentops or similar
-        const hasContextConfig = analysis.configs.some(c => c.content.includes('context') || c.content.includes('token_limit'));
+        const hasContextConfig = analysis.configs.some(c =>
+            c.content.includes('context') ||
+            c.content.includes('token_limit') ||
+            c.content.includes('maxTokens')
+        );
 
         if (hasContextConfig) {
             score += 80;
             findings.push('Context management configuration detected');
         } else {
             suggestions.push('Define explicit context limits and chunking strategies in configuration');
+            suggestions.push('Add documentation-fetch or web-search tools for just-in-time context retrieval');
         }
 
         // Check for chunking logic in code
