@@ -9,6 +9,21 @@ export class ConfigGenerator extends BaseGenerator {
                 maxTokens: 40000,
                 strategy: "truncate"
             },
+            harness: {
+                selfVerification: {
+                    runUnitTestsAfterCodeChanges: true,
+                    requireGreenChecksBeforeCompletion: true
+                },
+                toolAccess: {
+                    webSearch: true,
+                    documentationFetch: true,
+                    pdfParsing: true
+                },
+                feedbackLoop: {
+                    enableCritiqueAndRevise: true,
+                    maxRefinementPasses: 2
+                }
+            },
             validation: {
                 strict: true,
                 humanApproval: ["deploy", "delete"]

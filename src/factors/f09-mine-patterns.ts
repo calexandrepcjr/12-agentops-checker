@@ -16,6 +16,7 @@ export class MinePatternsFactor extends BaseFactor {
             findings.push(`Found ${analysis.patterns.length} pattern sources`);
         } else {
             suggestions.push('Extract successful workflows into reusable patterns/templates');
+            suggestions.push('Store winning agent/tool chains as reusable harness recipes');
         }
 
         return this.createScore(score, findings, suggestions);

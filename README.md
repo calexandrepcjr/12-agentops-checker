@@ -77,6 +77,18 @@ Add the following configuration:
 
 *Note: Requires node >= 18 installed.*
 
+## Recommended Agentic Harness Mechanisms
+
+Beyond raw model quality, these harness mechanisms usually produce the biggest gains:
+
+- **Self-verification loops**: run tests after code changes and require green checks before task completion.
+- **Tool-augmented context retrieval**: integrate web search, documentation lookup, and PDF parsing for up-to-date context.
+- **Critique-and-revise passes**: allow a bounded refinement loop before finalizing outputs.
+- **Human approvals for critical actions**: require validation for deploy/delete or high-impact tool calls.
+- **Pattern capture**: store successful tool/agent chains as reusable recipes.
+
+This repository now scaffolds these defaults in `.agentops.config.json` and scores several of them during assessment.
+
 ## The 12 Factors
 
 We validate against these core principles:

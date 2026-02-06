@@ -1,6 +1,7 @@
 import { AutomatedTrackingFactor } from '../../src/factors/f01-automated-tracking';
 import { FocusedAgentsFactor } from '../../src/factors/f03-focused-agents';
 import { PackagePatternsFactor } from '../../src/factors/f12-package-patterns';
+import { ContinuousValidationFactor } from '../../src/factors/f04-continuous-validation';
 import { AnalysisResult } from '../../src/types';
 import fs from 'node:fs/promises';
 import os from 'node:os';
@@ -28,6 +29,34 @@ describe('Factors', () => {
         const factor = new FocusedAgentsFactor();
         const score = await factor.check(mockAnalysis, '/tmp');
         expect(score.score).toBe(0);
+    });
+
+
+    it('given tests, CI and self-verification config, returns full score for f04', async () => {
+        const factor = new ContinuousValidationFactor();
+        const score = await factor.check({
+            ...mockAnalysis,
+            patterns: [
+                {
+                    name: 'Automated Tests',
+                    description: 'Found unit tests',
+                    files: ['tests/core/assessor.test.ts']
+                },
+                {
+                    name: 'CI/CD Workflows',
+                    description: 'Found CI workflows',
+                    files: ['.github/workflows/ci.yml']
+                }
+            ],
+            configs: [{
+                path: '.agentops.config.json',
+                type: 'agentops-config',
+                content: '{"harness":{"selfVerification":{"runUnitTestsAfterCodeChanges":true,"requireGreenChecksBeforeCompletion":true}}}'
+            }]
+        }, '/tmp');
+
+        expect(score.score).toBe(100);
+        expect(score.findings).toContain('Self-verification harness settings detected');
     });
 
     it('given no package indicators, suggests packaging setup for f12', async () => {
